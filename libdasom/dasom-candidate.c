@@ -275,7 +275,7 @@ void dasom_candidate_select_next_item (DasomCandidate *candidate)
   }
 }
 
-/* TODO: 최적화 */
+/* TODO: optimization */
 void dasom_candidate_select_page_up_item (DasomCandidate *candidate)
 {
   g_debug (G_STRLOC ": %s", G_STRFUNC);
@@ -285,7 +285,7 @@ void dasom_candidate_select_page_up_item (DasomCandidate *candidate)
     dasom_candidate_select_previous_item (candidate);
 }
 
-/* TODO: 최적화 */
+/* TODO: optimization */
 void dasom_candidate_select_page_down_item (DasomCandidate *candidate)
 {
   g_debug (G_STRLOC ": %s", G_STRFUNC);

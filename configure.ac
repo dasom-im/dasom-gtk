@@ -36,7 +36,6 @@ PKG_CHECK_MODULES(GIO, [gio-2.0])
 PKG_CHECK_MODULES(GOBJECT, [gobject-2.0])
 PKG_CHECK_MODULES(GTK3, [gtk+-3.0])
 PKG_CHECK_MODULES(GTK2, [gtk+-2.0])
-PKG_CHECK_MODULES(LIBHANGUL, libhangul >= 0.0.12)
 PKG_CHECK_MODULES(X11, [x11])
 
 dnl ***************************************************************************
@@ -146,6 +145,5 @@ AC_OUTPUT([
   modules/clients/qt5/Makefile
   modules/engines/Makefile
   modules/engines/dasom-english/Makefile
-  modules/engines/dasom-jeongeum/Makefile
   daemon/Makefile
   po/Makefile.in])

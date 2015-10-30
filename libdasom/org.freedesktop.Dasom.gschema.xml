@@ -2,7 +2,7 @@
 <schemalist>
   <schema id="org.freedesktop.Dasom" path="/org/freedesktop/dasom/">
     <key type="s" name="default-engine">
-      <default>'dasom-jeongeum'</default>
+      <default>'libdasom-english'</default>
       <summary>default input method engine</summary>
       <description>default input method engine</description>
     </key>
@@ -12,7 +12,7 @@
       <description>Binding to change the input method</description>
     </key>
     <key name="enabled-engines" type="as">
-      <default>['dasom-jeongeum']</default>
+      <default>['libdasom-english']</default>
       <summary>Enabled engines</summary>
       <description>List of enabled engines.</description>
     </key>

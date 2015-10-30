@@ -1,10 +1,7 @@
-Dasom is an input method framework, which provides
+Dasom is a multilingual input method framework, which provides
 
   * Input Method Server
     * dasom-daemon including XIM
-
-  * Language Engines
-    * English: dasom-english
 
   * Client Modules
     * GTK+2, GTK+3, Qt4, Qt5
@@ -95,9 +92,6 @@ References
   http://doc.qt.io/qt-5/qinputmethod.html
   https://git.gnome.org/browse/gtk+
 
-  https://github.com/choehwanjin/nabi
-  https://github.com/choehwanjin/imhangul
-  https://github.com/choehwanjin/ibus-hangul
   https://github.com/ibus/ibus
   https://github.com/fcitx/fcitx
   https://github.com/fcitx/fcitx-qt5

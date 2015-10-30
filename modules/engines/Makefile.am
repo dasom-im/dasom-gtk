@@ -1,3 +1,3 @@
-SUBDIRS = dasom-english dasom-jeongeum
+SUBDIRS = dasom-english
 
 DISTCLEANFILES = Makefile.in
