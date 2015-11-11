@@ -143,7 +143,5 @@ AC_OUTPUT([
   modules/clients/gtk/Makefile
   modules/clients/qt4/Makefile
   modules/clients/qt5/Makefile
-  modules/engines/Makefile
-  modules/engines/dasom-english/Makefile
   daemon/Makefile
   po/Makefile.in])

@@ -1,3 +1,3 @@
-SUBDIRS = engines clients
+SUBDIRS = clients
 
 DISTCLEANFILES = Makefile.in
