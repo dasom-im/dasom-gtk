@@ -64,10 +64,16 @@ static void on_engine_changed (DasomAgent   *agent,
 {
   g_debug (G_STRLOC ": %s: name: %s", G_STRFUNC, name);
 
-  if (g_strcmp0 (name, "en") == 0 || g_strcmp0 (name, "EN") == 0)
-    app_indicator_set_icon_full (indicator, "dasom-indicator-en", "english");
+  gchar *icon_name;
+
+  if (g_strcmp0 (name, "focus-out") == 0)
+    icon_name = g_strdup ("dasom-indicator");
   else
-    app_indicator_set_icon_full (indicator, "dasom-indicator", "Dasom");
+    icon_name = g_strdup_printf ("dasom-indicator-%s", name);
+
+  app_indicator_set_icon_full (indicator, icon_name, name);
+
+  g_free (icon_name);
 }
 
 static void on_disconnected (DasomAgent   *agent,
