@@ -8,5 +8,5 @@
   "version": "@VERSION@",
   "description": "Dasom Agent for Dasom Input Method Framework",
   "shell-version": [ "3.14", "3.16", "3.18"],
-  "url": "https://github.com/cogniti/dasom"
+  "url": "https://github.com/dasom-im/dasom"
 }

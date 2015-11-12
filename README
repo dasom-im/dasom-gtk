@@ -10,7 +10,7 @@ Dasom is a multilingual input method framework, which provides
     * GNOME shell: dasom agent extension
     * KDE, Unity, GNOME panel: dasom-indicator (using libappindicator3)
 
-Project Homepage: https://github.com/cogniti/dasom
+Project Homepage: https://github.com/dasom-im/dasom
 
 
 INSTALL
