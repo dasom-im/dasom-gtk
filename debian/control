@@ -17,17 +17,18 @@ Build-Depends: debhelper,
                librsvg2-bin,
                fonts-noto-cjk
 Standards-Version: 3.9.4
-Homepage: https://github.com/cogniti/dasom
+Homepage: https://github.com/dasom-im/dasom
 
 Package: dasom
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
-Depends: ${shlibs:Depends}, ${misc:Depends}, x11-xserver-utils
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: im-config, dconf-editor, gnome-tweak-tool
-Suggests: fonts-noto-cjk
+Suggests: fonts-noto-cjk, dasom-jeongeum
 Description: Input Method Framework
- Dasom is an input method framework, which provides
+ Dasom is a multilingual input method framework, which provides
  .
   * Input Method Server including XIM
   * IM Modules for GTK+2, GTK+3, Qt4, Qt5
   * Indicators for GNOME Shell, Unity, KDE, GNOME panel
+  * English engine module embedded
