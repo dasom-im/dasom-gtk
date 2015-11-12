@@ -207,8 +207,6 @@ on_new_connection (GSocketService    *service,
 {
   g_debug (G_STRLOC ": %s", G_STRFUNC);
 
-  /* TODO: simple authentication using GCredentials */
-
   GSocket *socket = g_socket_connection_get_socket (socket_connection);
 
   DasomMessage *message;
@@ -218,9 +216,10 @@ on_new_connection (GSocketService    *service,
     dasom_send_message (socket, DASOM_MESSAGE_CONNECT_REPLY, NULL, 0, NULL);
   else
   {
-    /* TODO: error handling */
+    g_critical (G_STRLOC ": Couldn't connect");
+    dasom_message_unref (message);
     dasom_send_message (socket, DASOM_MESSAGE_ERROR, NULL, 0, NULL);
-    return TRUE; /* TODO: what happened if return value is FALSE */
+    return FALSE;
   }
 
   DasomConnection *connection;

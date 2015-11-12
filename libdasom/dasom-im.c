@@ -525,7 +525,10 @@ dasom_im_init (DasomIM *im)
   message = dasom_recv_message (socket);
 
   if (message->header->type != DASOM_MESSAGE_CONNECT_REPLY)
+  {
+    dasom_message_unref (message);
     g_error ("Couldn't connect dasom daemon");
+  }
 
   dasom_message_unref (message);
 
