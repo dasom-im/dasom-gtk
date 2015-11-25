@@ -1,4 +1,4 @@
-SUBDIRS = libdasom modules daemon agents po data
+SUBDIRS = src po
 
 ACLOCAL_AMFLAGS = -I m4
 
@@ -20,9 +20,6 @@ distclean-local:
 update-gtk-im-cache:
 	$(GTK_QUERY_IMMODULES2) --update-cache
 	$(GTK_QUERY_IMMODULES3) --update-cache
-
-update-gtk-icon-cache:
-	(cd data/icons; make update-gtk-icon-cache)
 
 ChangeLog:
 

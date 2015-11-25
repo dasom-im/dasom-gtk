@@ -1,5 +1,2 @@
 # List of source files containing translatable strings.
-agents/app-indicator/dasom-indicator.c
-agents/gnome-shell-extension/extension.js
-daemon/dasom-daemon.c
-modules/clients/gtk/im-dasom.c
+src/im-dasom.c
