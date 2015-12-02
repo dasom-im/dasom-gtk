@@ -16,7 +16,7 @@ Homepage: https://github.com/dasom-im/dasom-gtk
 Package: dasom-gtk
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, dasom (>= 1.2)
 Recommends: dconf-editor
 Description: GTK+ IM modules for Dasom
  dasom-gtk provides GTK+2, GTK+3 IM modules for Dasom
