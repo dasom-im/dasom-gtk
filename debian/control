@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 9),
                libgtk-3-dev,
                libgtk2.0-dev,
                dasom (>= 1.2)
-Standards-Version: 3.9.4
+Standards-Version: 3.9.6
 Homepage: https://github.com/dasom-im/dasom-gtk
 
 Package: dasom-gtk
