@@ -3,7 +3,7 @@
  * im-dasom.c
  * This file is part of Dasom.
  *
- * Copyright (C) 2015 Hodong Kim <hodong@cogno.org>
+ * Copyright (C) 2015,2016 Hodong Kim <cogniti@gmail.com>
  *
  * Dasom is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published
@@ -415,7 +415,7 @@ dasom_gtk_im_context_init (DasomGtkIMContext *context)
 {
   g_debug (G_STRLOC ": %s", G_STRFUNC);
 
-  context->im = dasom_im_new ();
+  context->im = dasom_im_new (DASOM_CONNECTION_DASOM_IM);
 
   g_signal_connect (context->im, "commit",
                     G_CALLBACK (on_commit), context);
