@@ -1,3 +1,9 @@
+dasom-gtk (1.2.1) stable; urgency=medium
+
+  * Fix dasom_im_new() parameter
+
+ -- Hodong Kim <cogniti@gmail.com>  Sun, 07 Feb 2016 21:11:12 +0900
+
 dasom-gtk (1.2) stable; urgency=medium
 
   * We can remove event filter in run-time (closes #1)
