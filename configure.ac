@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT(dasom-gtk, 1.2, https://github.com/dasom-im/dasom-gtk/issues)
+AC_INIT(dasom-gtk, 1.2.1, https://github.com/dasom-im/dasom-gtk/issues)
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -26,7 +26,7 @@ AM_GLIB_DEFINE_LOCALEDIR(DASOM_LOCALE_DIR)
 
 LT_INIT([disable-static])
 
-PKG_CHECK_MODULES(DASOM, [dasom])
+PKG_CHECK_MODULES(DASOM, [dasom >= 1.2.2])
 PKG_CHECK_MODULES(GTK3, [gtk+-3.0])
 PKG_CHECK_MODULES(GTK2, [gtk+-2.0])
 
