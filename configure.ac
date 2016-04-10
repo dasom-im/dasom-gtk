@@ -26,9 +26,8 @@ AM_GLIB_DEFINE_LOCALEDIR(DASOM_LOCALE_DIR)
 
 LT_INIT([disable-static])
 
-PKG_CHECK_MODULES(DASOM, [dasom >= 1.2.2])
-PKG_CHECK_MODULES(GTK3, [gtk+-3.0])
-PKG_CHECK_MODULES(GTK2, [gtk+-2.0])
+PKG_CHECK_MODULES(IM_DASOM_GTK3_DEPS, [dasom >= 1.2.2 gtk+-3.0 gdk-x11-3.0])
+PKG_CHECK_MODULES(IM_DASOM_GTK2_DEPS, [dasom >= 1.2.2 gtk+-2.0])
 
 case `uname -m` in
   x86_64)
