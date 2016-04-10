@@ -26,6 +26,10 @@
 #include <dasom.h>
 #include <string.h>
 #include <gdk/gdkkeysyms.h>
+#include <X11/XKBlib.h>
+#if GTK_CHECK_VERSION (3, 6, 0)
+  #include <gdk/gdkx.h>
+#endif
 
 #define DASOM_GTK_TYPE_IM_CONTEXT  (dasom_gtk_im_context_get_type ())
 #define DASOM_GTK_IM_CONTEXT(obj)  (G_TYPE_CHECK_INSTANCE_CAST ((obj), DASOM_GTK_TYPE_IM_CONTEXT, DasomGtkIMContext))
@@ -59,15 +63,14 @@ translate_gdk_event_key (GdkEventKey *event)
 {
   g_debug (G_STRLOC ": %s", G_STRFUNC);
 
-  DasomEventType type;
+  DasomEvent *dasom_event = dasom_event_new (DASOM_EVENT_NOTHING);
 
   if (event->type == GDK_KEY_PRESS)
-    type = DASOM_EVENT_KEY_PRESS;
+    dasom_event->key.type = DASOM_EVENT_KEY_PRESS;
   else
-    type = DASOM_EVENT_KEY_RELEASE;
+    dasom_event->key.type = DASOM_EVENT_KEY_RELEASE;
 
-  DasomEvent *dasom_event = dasom_event_new (type);
-  dasom_event->key.state = event->state;
+  dasom_event->key.state  = event->state;
   dasom_event->key.keyval = event->keyval;
   dasom_event->key.hardware_keycode = event->hardware_keycode;
 
@@ -79,19 +82,37 @@ translate_xkey_event (XEvent *xevent)
 {
   g_debug (G_STRLOC ": %s", G_STRFUNC);
 
-  DasomEventType type = DASOM_EVENT_NOTHING;
+  GdkKeymap *keymap = gdk_keymap_get_default ();
+  GdkModifierType consumed, state;
+
+  DasomEvent *dasom_event = dasom_event_new (DASOM_EVENT_NOTHING);
 
   if (xevent->type == KeyPress)
-    type = DASOM_EVENT_KEY_PRESS;
+    dasom_event->key.type = DASOM_EVENT_KEY_PRESS;
   else
-    type = DASOM_EVENT_KEY_RELEASE;
+    dasom_event->key.type = DASOM_EVENT_KEY_RELEASE;
 
-  DasomEvent *dasom_event = dasom_event_new (type);
-  dasom_event->key.state  = xevent->xkey.state;
-  dasom_event->key.keyval = XLookupKeysym (&xevent->xkey,
-                              (!(xevent->xkey.state & ShiftMask) !=
-                               !(xevent->xkey.state & LockMask)) ? 1 : 0);
+  dasom_event->key.state = (DasomModifierType) xevent->xkey.state;
+
+#if GTK_CHECK_VERSION (3, 6, 0)
+  gint group = gdk_x11_keymap_get_group_for_state (keymap, xevent->xkey.state);
+#else
+  gint group = XkbGroupForCoreState (xevent->xkey.state);
+#endif
+
   dasom_event->key.hardware_keycode = xevent->xkey.keycode;
+  dasom_event->key.keyval = DASOM_KEY_VoidSymbol;
+
+  gdk_keymap_translate_keyboard_state (keymap,
+                                       dasom_event->key.hardware_keycode,
+                                       dasom_event->key.state,
+                                       group,
+                                       &dasom_event->key.keyval,
+                                       NULL, NULL, &consumed);
+
+  state = dasom_event->key.state & ~consumed;
+  gdk_keymap_add_virtual_modifiers (keymap, &state);
+  dasom_event->key.state |= (DasomModifierType) state;
 
   return dasom_event;
 }
@@ -139,9 +160,9 @@ on_gdk_x_event (XEvent            *xevent,
     case KeyRelease:
       if (context->is_hook_gdk_event_key)
       {
-        DasomEvent *d_event = translate_xkey_event (xevent);
-        retval = dasom_im_filter_event (context->im, d_event);
-        dasom_event_free (d_event);
+        DasomEvent *dasom_event = translate_xkey_event (xevent);
+        retval = dasom_im_filter_event (context->im, dasom_event);
+        dasom_event_free (dasom_event);
       }
       break;
     case ButtonPress:
